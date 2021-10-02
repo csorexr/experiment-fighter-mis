@@ -39,6 +39,7 @@ function fire (text: string) {
             `, fighter, 50, -50)
     }
     bolt.follow(pickghost(), 100)
+    bolt.setFlag(SpriteFlag.AutoDestroy, true)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
     fire("left")
@@ -46,6 +47,12 @@ controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
 })
 function pickghost () {
     return sprites.allOfKind(SpriteKind.Enemy)._pickRandom()
+}
+function logspeed () {
+    for (let value of sprites.allOfKind(SpriteKind.Projectile)) {
+        console.logValue("vx", value.vx)
+        console.logValue("vy", value.vy)
+    }
 }
 let newGhost: Sprite = null
 let bolt: Sprite = null
