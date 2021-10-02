@@ -55,6 +55,32 @@ function logspeed () {
         console.logValue("vy", value.vy)
     }
 }
+sprites.onDestroyed(SpriteKind.Enemy, function (sprite) {
+    for (let value of sprites.allOfKind(SpriteKind.Projectile)) {
+        if (sprites.readDataSprite(value, "following") == sprite) {
+            console.logValue("vx", value.vx)
+            console.logValue("vy", value.vy)
+            console.logValue("ax", value.ax)
+            console.logValue("ay", value.ay)
+            value.ax = 3 * value.vx
+            value.ay = 3 * value.vy
+        }
+    }
+})
+sprites.onOverlap(SpriteKind.Projectile, SpriteKind.Enemy, function (sprite, otherSprite) {
+    otherSprite.destroy()
+    for (let value of sprites.allOfKind(SpriteKind.Projectile)) {
+        if (sprites.readDataSprite(value, "following") == otherSprite) {
+            console.logValue("vx", value.vx)
+            console.logValue("vy", value.vy)
+            console.logValue("ax", value.ax)
+            console.logValue("ay", value.ay)
+            value.ax = 3 * value.vx
+            value.ay = 3 * value.vy
+        }
+    }
+    sprite.destroy()
+})
 let newGhost: Sprite = null
 let bolt: Sprite = null
 let fighter: Sprite = null
@@ -80,7 +106,7 @@ fighter = sprites.create(img`
 fighter.setPosition(80, 92)
 fighter.setStayInScreen(true)
 controller.moveSprite(fighter)
-game.onUpdateInterval(800, function () {
+game.onUpdateInterval(500, function () {
     newGhost = sprites.create(img`
         ........................
         ........................
