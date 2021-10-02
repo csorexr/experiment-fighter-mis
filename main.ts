@@ -1,43 +1,54 @@
+function fire (text: string) {
+    if ("left" == text) {
+        bolt = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . b . . . . . . . 
+            . . . . . . . b d b . . . . . . 
+            . . . . . . . c d c . . . . . . 
+            . . . . . . . c 5 c . . . . . . 
+            . . . . . . c d 5 d c . . . . . 
+            . . . b c c d 5 5 5 d c c b . . 
+            . . b d d 5 5 5 5 5 5 5 d d b . 
+            . . . b c c d 5 5 5 d c c b . . 
+            . . . . . . c d 5 d c . . . . . 
+            . . . . . . . c 5 c . . . . . . 
+            . . . . . . . c d c . . . . . . 
+            . . . . . . . b d b . . . . . . 
+            . . . . . . . . b . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, fighter, -50, -50)
+    } else if ("right" == text) {
+        bolt = sprites.createProjectileFromSprite(img`
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            . . . . . . . . b . . . . . . . 
+            . . . . . . . b d b . . . . . . 
+            . . . . . . . c d c . . . . . . 
+            . . . . . . . c 5 c . . . . . . 
+            . . . . . . c d 5 d c . . . . . 
+            . . . b c c d 5 5 5 d c c b . . 
+            . . b d d 5 5 5 5 5 5 5 d d b . 
+            . . . b c c d 5 5 5 d c c b . . 
+            . . . . . . c d 5 d c . . . . . 
+            . . . . . . . c 5 c . . . . . . 
+            . . . . . . . c d c . . . . . . 
+            . . . . . . . b d b . . . . . . 
+            . . . . . . . . b . . . . . . . 
+            . . . . . . . . . . . . . . . . 
+            `, fighter, 50, -50)
+    }
+    bolt.follow(pickghost(), 100)
+}
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . b . . . . . . . 
-        . . . . . . . b d b . . . . . . 
-        . . . . . . . c d c . . . . . . 
-        . . . . . . . c 5 c . . . . . . 
-        . . . . . . c d 5 d c . . . . . 
-        . . . b c c d 5 5 5 d c c b . . 
-        . . b d d 5 5 5 5 5 5 5 d d b . 
-        . . . b c c d 5 5 5 d c c b . . 
-        . . . . . . c d 5 d c . . . . . 
-        . . . . . . . c 5 c . . . . . . 
-        . . . . . . . c d c . . . . . . 
-        . . . . . . . b d b . . . . . . 
-        . . . . . . . . b . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, fighter, 50, -50)
-    projectile = sprites.createProjectileFromSprite(img`
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        . . . . . . . . b . . . . . . . 
-        . . . . . . . b d b . . . . . . 
-        . . . . . . . c d c . . . . . . 
-        . . . . . . . c 5 c . . . . . . 
-        . . . . . . c d 5 d c . . . . . 
-        . . . b c c d 5 5 5 d c c b . . 
-        . . b d d 5 5 5 5 5 5 5 d d b . 
-        . . . b c c d 5 5 5 d c c b . . 
-        . . . . . . c d 5 d c . . . . . 
-        . . . . . . . c 5 c . . . . . . 
-        . . . . . . . c d c . . . . . . 
-        . . . . . . . b d b . . . . . . 
-        . . . . . . . . b . . . . . . . 
-        . . . . . . . . . . . . . . . . 
-        `, fighter, -50, -50)
+    fire("left")
+    fire("right")
 })
+function pickghost () {
+    return sprites.allOfKind(SpriteKind.Enemy)._pickRandom()
+}
 let newGhost: Sprite = null
-let projectile: Sprite = null
+let bolt: Sprite = null
 let fighter: Sprite = null
 effects.starField.startScreenEffect()
 fighter = sprites.create(img`
