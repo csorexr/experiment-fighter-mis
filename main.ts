@@ -1,6 +1,46 @@
+controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . b . . . . . . . 
+        . . . . . . . b d b . . . . . . 
+        . . . . . . . c d c . . . . . . 
+        . . . . . . . c 5 c . . . . . . 
+        . . . . . . c d 5 d c . . . . . 
+        . . . b c c d 5 5 5 d c c b . . 
+        . . b d d 5 5 5 5 5 5 5 d d b . 
+        . . . b c c d 5 5 5 d c c b . . 
+        . . . . . . c d 5 d c . . . . . 
+        . . . . . . . c 5 c . . . . . . 
+        . . . . . . . c d c . . . . . . 
+        . . . . . . . b d b . . . . . . 
+        . . . . . . . . b . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, fighter, 50, -50)
+    projectile = sprites.createProjectileFromSprite(img`
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        . . . . . . . . b . . . . . . . 
+        . . . . . . . b d b . . . . . . 
+        . . . . . . . c d c . . . . . . 
+        . . . . . . . c 5 c . . . . . . 
+        . . . . . . c d 5 d c . . . . . 
+        . . . b c c d 5 5 5 d c c b . . 
+        . . b d d 5 5 5 5 5 5 5 d d b . 
+        . . . b c c d 5 5 5 d c c b . . 
+        . . . . . . c d 5 d c . . . . . 
+        . . . . . . . c 5 c . . . . . . 
+        . . . . . . . c d c . . . . . . 
+        . . . . . . . b d b . . . . . . 
+        . . . . . . . . b . . . . . . . 
+        . . . . . . . . . . . . . . . . 
+        `, fighter, -50, -50)
+})
 let newGhost: Sprite = null
+let projectile: Sprite = null
+let fighter: Sprite = null
 effects.starField.startScreenEffect()
-let fighter = sprites.create(img`
+fighter = sprites.create(img`
     . . . . . . . 5 5 . . . . . . . 
     . . . . . f 5 5 5 5 f . . . . . 
     . . . . f 6 6 6 6 6 6 f . . . . 
