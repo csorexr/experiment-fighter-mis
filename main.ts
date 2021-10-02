@@ -38,7 +38,8 @@ function fire (text: string) {
             . . . . . . . . . . . . . . . . 
             `, fighter, 50, -50)
     }
-    bolt.follow(pickghost(), 100)
+    sprites.setDataSprite(bolt, "following", pickghost())
+    bolt.follow(sprites.readDataSprite(bolt, "following"), 100)
     bolt.setFlag(SpriteFlag.AutoDestroy, true)
 }
 controller.A.onEvent(ControllerButtonEvent.Pressed, function () {
